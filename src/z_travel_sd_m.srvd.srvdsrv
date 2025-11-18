@@ -1,0 +1,5 @@
+@EndUserText.label: 'Travel Service Definition managed'
+@AbapCatalog.extensibility.extensible: true
+define service Z_TRAVEL_SD_M {
+  expose Z_TRAVEL_M;
+}
