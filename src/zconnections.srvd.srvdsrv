@@ -1,0 +1,4 @@
+@EndUserText.label: 'Connections Service Definition'
+define service ZCONNECTIONS {
+  expose Z_R_CONNECTIONS;
+}

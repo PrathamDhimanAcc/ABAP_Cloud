@@ -1,0 +1,5 @@
+CLASS zbp_r_connections DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z_r_connections.
+ENDCLASS.
+
+CLASS zbp_r_connections IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,44 @@
+managed implementation in class zbp_r_connections unique;
+strict ( 2 );
+
+define behavior for Z_R_CONNECTIONS //alias <alias_name>
+persistent table zaconnections
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( numbering : managed ) UUID;
+  field ( readonly ) UUID,CreatedAt,CreatedBy,ChangedBy,ChangedAt;
+  field ( mandatory ) CarrierID, ConnectionID, AirportFromID, AirportToID, Price;
+
+  validation CheckSemanticKey on save { create; field CarrierID, ConnectionID; }
+  validation ValidateCarrier on save { create; field CarrierID; }
+  validation ValidateAirports on save { create; field AirportFromID, AirportToID; }
+  validation ValidatePrice on save { create; field Price; }
+
+  determination GetCities on modify { create; update; field AirportFromID , AirportToID; }
+
+  mapping for zaconnections
+  {
+    UUID = uuid;
+    CarrierID = carrier_id;
+    ConnectionID = connection_id;
+    AirportFromID = airport_from_id;
+    AirportToID = airport_to_id;
+    CityFrom = city_from;
+    CityTo = city_to;
+    CountryFrom = country_from;
+    CountryTo = country_to;
+    Price = price;
+    CurrencyCode = currency_code;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    ChangedBy = changed_by;
+    ChangedAt = changed_at;
+
+  }
+
+}
