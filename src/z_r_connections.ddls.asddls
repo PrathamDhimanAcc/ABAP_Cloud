@@ -22,6 +22,9 @@ define root view entity Z_R_CONNECTIONS
     currency_code as CurrencyCode,
     
     
+    is_approved as IsApproved,
+    
+    
     created_by as CreatedBy,
     created_at as CreatedAt,
     changed_by as ChangedBy,

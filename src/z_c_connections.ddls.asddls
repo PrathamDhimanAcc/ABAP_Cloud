@@ -21,6 +21,7 @@ define root view entity Z_C_CONNECTIONS provider contract transactional_interfac
        AirportToID, 
        CityTo, 
        CountryTo, 
+       IsApproved,
        Price, 
        CurrencyCode
 }

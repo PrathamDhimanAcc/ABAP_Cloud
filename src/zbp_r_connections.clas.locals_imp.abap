@@ -20,6 +20,8 @@ CLASS lhc_Z_R_CONNECTIONS DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS validateprice FOR VALIDATE ON SAVE
       IMPORTING keys FOR z_r_connections~validateprice.
+    METHODS ApproveConnection FOR MODIFY
+      IMPORTING keys FOR ACTION z_r_connections~ApproveConnection.
 
 
 ENDCLASS.
@@ -109,6 +111,24 @@ CLASS lhc_Z_R_CONNECTIONS IMPLEMENTATION.
 
         endif.
     endloop.
+
+
+  ENDMETHOD.
+
+  METHOD ApproveConnection.
+       data failed_rec like line of failed-z_r_connections.
+       data reported_rec like line of reported-z_r_connections.
+
+        read entities of z_r_connections
+        in local mode
+        entity z_r_connections
+        fields ( IsApproved ) with corresponding #( keys )
+        result data(conns).
+
+         modify entities of z_r_connections
+         in local mode
+         entity z_r_connections
+         update fields ( IsApproved ) with value  #( ( %data-IsApproved = abap_true ) ).
 
 
   ENDMETHOD.

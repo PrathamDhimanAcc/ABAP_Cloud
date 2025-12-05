@@ -10,6 +10,9 @@ authorization master ( instance )
   create ( authorization : global );
   update;
   delete;
+
+  action ApproveConnection;
+
   field ( numbering : managed ) UUID;
   field ( readonly ) UUID,CreatedAt,CreatedBy,ChangedBy,ChangedAt;
   field ( mandatory ) CarrierID, ConnectionID, AirportFromID, AirportToID, Price;
@@ -34,6 +37,7 @@ authorization master ( instance )
     CountryTo = country_to;
     Price = price;
     CurrencyCode = currency_code;
+    IsApproved = is_approved;
     CreatedBy = created_by;
     CreatedAt = created_at;
     ChangedBy = changed_by;
