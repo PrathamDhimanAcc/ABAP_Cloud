@@ -92,15 +92,16 @@ CLASS lhc_Z_R_CONNECTIONS IMPLEMENTATION.
 
 
     loop at conns into data(c).
-        if c-Price <= 0.
+        if c-Price <= 99.
             failed_rec-%tky = c-%tky.
             append failed_rec to failed-z_r_connections.
 
             reported_rec-%tky = c-%tky.
             reported_rec-%msg = new_message(
-                id = 'zcm_connection'
-                number = '004'
-                severity = ms-error
+                id = 'ZCONNECTIONS_MSG'
+                number = '099'
+                severity = if_abap_behv_message=>severity-error
+                v1 = |99|
              ).
 
              reported_rec-%element-price = if_abap_behv=>mk-on.
